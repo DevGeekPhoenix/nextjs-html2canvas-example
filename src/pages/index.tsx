@@ -1,18 +1,18 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import html2canvas from "html2canvas";
-import { useState } from "react";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useState, useRef } from "react";
 
 export default function Home() {
   const [image, setImage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const componentRef = useRef<HTMLElement>(null);
+
   const takeScreenshotHandler = async () => {
-    await html2canvas(document.body as HTMLElement, {
+    if (!componentRef.current) return;
+
+    await html2canvas(componentRef.current, {
       allowTaint: true,
       useCORS: true,
     }).then((canvas) => {
@@ -28,7 +28,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main id="capture" className={styles.main}>
+
+      <main ref={componentRef} className={styles.main}>
         <div className={styles.center}>
           <div
             style={{
