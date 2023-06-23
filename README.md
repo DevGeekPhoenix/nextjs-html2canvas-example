@@ -1,1 +1,3 @@
-This project is a sample of using `html2canvas` to take a screenshot of a rendered element 
+# Nextjs Html2Canvas Example
+
+This repository contains a sample application built with Next.js and HTML2Canvas. It demonstrates how to capture and download screenshots of HTML elements using HTML2Canvas in a Next.js project.
